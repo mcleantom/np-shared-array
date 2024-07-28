@@ -4,7 +4,7 @@ Utility for sharing numpy arrays between processes
 Usage:
 
 ```python
-from np_shared_array import create_shared_array, SharedNumpyArray
+from src.np_shared_array import create_shared_array, SharedNumpyArray
 from multiprocessing import Process
 
 
@@ -13,7 +13,7 @@ def worker(shared_array: SharedNumpyArray):
     with shared_array.lock:
         array[0][0] = 1
 
-    
+
 def main():
     shape = [10, 10]
     shared_array = create_shared_array(shape)
@@ -27,7 +27,7 @@ def main():
     with shared_array.lock:
         print(array[0][0])
 
-    
+
 if __name__ == "__main__":
     main()
 ```

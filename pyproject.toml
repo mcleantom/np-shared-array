@@ -8,15 +8,22 @@ authors = [
     {name = "Tom McLean"},
 ]
 description = "Wrapper for sharing numpy arrays between processes"
-dynamic = ["version", "readme", "dependencies"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["readme", "dependencies"]
+requires-python = ">=3.9"
+version = "0.0.1"
 
 [tool.setuptools.dynamic]
-version = {attr = "np_shared_array.__version__"}
 readme = {file = ["README.md"], content-type = "text/markdown"}
 dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools]
-py-modules = ["np_shared_array"]
+packages = ["np_shared_array"]
+package-dir = {"" = "src"}
 
 [tool.black]
 line-length = 120
