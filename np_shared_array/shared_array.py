@@ -37,7 +37,8 @@ class SharedNumpyArray:
         return SharedNumpyArray(
             memory=memory,
             dtype=array.dtype,
-            shape=array.shape
+            shape=array.shape,
+            lock=RLock()
         )
 
 
