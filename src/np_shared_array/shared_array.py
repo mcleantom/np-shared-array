@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from multiprocessing import RLock
 from multiprocessing.managers import SharedMemoryManager
 from multiprocessing.shared_memory import SharedMemory
-from multiprocessing import RLock
+from typing import Sequence, SupportsIndex, Tuple
 
 import numpy as np
 import numpy.typing as npt
-
-from typing import Tuple, Sequence, SupportsIndex
 
 _np_shared_array_smm: SharedMemoryManager | None = None
 
@@ -27,19 +26,14 @@ class SharedNumpyArray:
 
     def to_numpy(self) -> npt.NDArray:
         arr = np.frombuffer(self.memory.buf, dtype=self.dtype)
-        arr = arr[:np.prod(self.shape)].reshape(self.shape)
+        arr = arr[: np.prod(self.shape)].reshape(self.shape)
         return arr
 
     @classmethod
     def from_numpy(cls, array: npt.NDArray) -> SharedNumpyArray:
         manager = _get_memory_manager()
         memory = manager.SharedMemory(size=array.nbytes)
-        return SharedNumpyArray(
-            memory=memory,
-            dtype=array.dtype,
-            shape=array.shape,
-            lock=RLock()
-        )
+        return SharedNumpyArray(memory=memory, dtype=array.dtype, shape=array.shape, lock=RLock())
 
 
 def _get_memory_manager() -> SharedMemoryManager:

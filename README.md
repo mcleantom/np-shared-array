@@ -4,7 +4,7 @@ Utility for sharing numpy arrays between processes
 Usage:
 
 ```python
-from src.np_shared_array import create_shared_array, SharedNumpyArray
+from np_shared_array import create_shared_array, SharedNumpyArray
 from multiprocessing import Process
 
 
