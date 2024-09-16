@@ -25,7 +25,7 @@ class SharedNumpyArray:
     lock: RLock
 
     def to_numpy(self) -> npt.NDArray:
-        arr = np.frombuffer(self.memory.buf, dtype=self.dtype)
+        arr = np.ndarray((np.prod(self.shape),), dtype=self.dtype, buffer=self.memory.buf)
         arr = arr[: np.prod(self.shape)].reshape(self.shape)
         return arr
 

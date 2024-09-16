@@ -1,5 +1,6 @@
 from multiprocessing import Process
 from unittest import TestCase
+import gc
 
 from src.np_shared_array.shared_array import SharedNumpyArray, create_shared_array
 
