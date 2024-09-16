@@ -1,5 +1,6 @@
 # np-shared-array
-Utility for sharing numpy arrays between processes
+Utility for sharing numpy arrays between processes. This can be useful if you have a background process
+performing a calculation and main process on an API which can query the array.
 
 Usage:
 
