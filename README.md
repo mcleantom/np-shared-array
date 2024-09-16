@@ -2,6 +2,9 @@
 Utility for sharing numpy arrays between processes. This can be useful if you have a background process
 performing a calculation and main process on an API which can query the array.
 
+
+![tests](https://github.com/mcleantom/np-shared-array/actions/workflows/tests.yml/badge.svg?branch=main)
+
 Usage:
 
 ```python
